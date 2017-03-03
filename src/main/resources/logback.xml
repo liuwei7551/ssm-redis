@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+
+	<property resource="log.properties" />
+	<contextName>${log.projectName }</contextName>
+
+	<!-- 控制台 开始 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder charset="${log.charset}">
+			<pattern>${log.pattern}</pattern>
+		</encoder>
+	</appender>
+	<!-- 控制台 结束 -->
+
+	<!--logback.LogbackDemo：类的全路径 -->
+	<logger name="logback.LogbackDemo" level="INFO" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+	<root level="ERROR">
+		<appender-ref ref="STDOUT" />
+	</root>
+
+	<!-- 其他配置省略 -->
+</configuration>  

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lw.dao.UserMapper">
+	<resultMap id="BaseResultMap" type="com.lw.entity.User">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+		<result column="gender" jdbcType="TINYINT" property="gender" />
+		<result column="avatar" jdbcType="VARCHAR" property="avatar" />
+		<result column="note" jdbcType="VARCHAR" property="note" />
+		<result column="completeness" jdbcType="TINYINT" property="completeness" />
+		<result column="create_datetime" jdbcType="TIMESTAMP" property="createDatetime" />
+		<result column="update_datetime" jdbcType="TIMESTAMP" property="updateDatetime" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, nick_name, gender, avatar, note, completeness, create_datetime,
+		update_datetime
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user_info
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from user_info
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" keyColumn="id" keyProperty="id"
+		parameterType="com.lw.entity.User" useGeneratedKeys="true">
+		insert into user_info (nick_name, gender, avatar,
+		note, completeness, create_datetime,
+		update_datetime)
+		values (#{nickName,jdbcType=VARCHAR}, #{gender,jdbcType=TINYINT},
+		#{avatar,jdbcType=VARCHAR},
+		#{note,jdbcType=VARCHAR}, #{completeness,jdbcType=TINYINT},
+		#{createDatetime,jdbcType=TIMESTAMP},
+		#{updateDatetime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" keyColumn="id" keyProperty="id"
+		parameterType="com.lw.entity.User" useGeneratedKeys="true">
+		insert into user_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="nickName != null">
+				nick_name,
+			</if>
+			<if test="gender != null">
+				gender,
+			</if>
+			<if test="avatar != null">
+				avatar,
+			</if>
+			<if test="note != null">
+				note,
+			</if>
+			<if test="completeness != null">
+				completeness,
+			</if>
+			<if test="createDatetime != null">
+				create_datetime,
+			</if>
+			<if test="updateDatetime != null">
+				update_datetime,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="nickName != null">
+				#{nickName,jdbcType=VARCHAR},
+			</if>
+			<if test="gender != null">
+				#{gender,jdbcType=TINYINT},
+			</if>
+			<if test="avatar != null">
+				#{avatar,jdbcType=VARCHAR},
+			</if>
+			<if test="note != null">
+				#{note,jdbcType=VARCHAR},
+			</if>
+			<if test="completeness != null">
+				#{completeness,jdbcType=TINYINT},
+			</if>
+			<if test="createDatetime != null">
+				#{createDatetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDatetime != null">
+				#{updateDatetime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.lw.entity.User">
+		update user_info
+		<set>
+			<if test="nickName != null">
+				nick_name = #{nickName,jdbcType=VARCHAR},
+			</if>
+			<if test="gender != null">
+				gender = #{gender,jdbcType=TINYINT},
+			</if>
+			<if test="avatar != null">
+				avatar = #{avatar,jdbcType=VARCHAR},
+			</if>
+			<if test="note != null">
+				note = #{note,jdbcType=VARCHAR},
+			</if>
+			<if test="completeness != null">
+				completeness = #{completeness,jdbcType=TINYINT},
+			</if>
+			<if test="createDatetime != null">
+				create_datetime = #{createDatetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDatetime != null">
+				update_datetime = #{updateDatetime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.lw.entity.User">
+		update user_info
+		set nick_name = #{nickName,jdbcType=VARCHAR},
+		gender = #{gender,jdbcType=TINYINT},
+		avatar = #{avatar,jdbcType=VARCHAR},
+		note = #{note,jdbcType=VARCHAR},
+		completeness = #{completeness,jdbcType=TINYINT},
+		create_datetime = #{createDatetime,jdbcType=TIMESTAMP},
+		update_datetime = #{updateDatetime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>
