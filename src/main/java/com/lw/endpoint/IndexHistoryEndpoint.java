@@ -33,7 +33,7 @@ public class IndexHistoryEndpoint {
       @ApiImplicitParam(name = "pager", value = "不需要填写", required = false, paramType = "header", dataType = "String") })
   @ResponseBody
   @RequestMapping(value = { "api/v1/indexhistory" }, method = RequestMethod.GET)
-  public ResponseDto<List<IndexHistory>> listIndexHistory(@Valid Pager pager) {
-    return ResponseDto.create(this.indexHistoryService.listIndexHistory(pager));
+  public ResponseDto<List<IndexHistory>> listIndexHistory(@Valid Pager pager) throws Exception {
+    throw new Exception("测试");
   }
 }
