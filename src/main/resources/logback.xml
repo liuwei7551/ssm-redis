@@ -13,11 +13,11 @@
 	<!-- 控制台 结束 -->
 
 	<!--logback.LogbackDemo：类的全路径 -->
-	<logger name="logback.LogbackDemo" level="INFO" additivity="false">
+	<logger name="com.lw.endpoint" level="INFO" additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger>
 
-	<root level="ERROR">
+	<root level="INFO">
 		<appender-ref ref="STDOUT" />
 	</root>
 
