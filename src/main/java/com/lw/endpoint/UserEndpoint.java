@@ -24,7 +24,7 @@ public class UserEndpoint {
   @ResponseBody  //将Java对象输出json
   @RequestMapping(value = { "api/v1/user/{userId}" }, method = RequestMethod.GET)
   public ResponseDto<User> getUser(@PathVariable final int userId) {
-    return ResponseDto.create(userService.getUserById(userId));
+     return ResponseDto.create(userService.getUserById(userId));
   }
 
 }
