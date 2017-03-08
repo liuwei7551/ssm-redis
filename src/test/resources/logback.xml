@@ -10,22 +10,60 @@
 			<pattern>${log.pattern}</pattern>
 		</encoder>
 	</appender>
-	<!-- 控制台 结束 -->
-	
-	<appender name="test" class="ch.qos.logback.core.ConsoleAppender">
+
+<!-- 一般日志 开始 -->
+  <!-- 主日志 -->
+  <appender name="all-date-size" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <maxHistory>${log.maxHistory}</maxHistory>
+      <fileNamePattern>${LOG_HOME}/${log.projectName}.all.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>${log.maxFileSize}</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder charset="${log.charset}">
+      <pattern>${log.pattern}</pattern>
+    </encoder>
+  </appender>
+
+	<!-- SQL 开始 -->
+	<appender name="sql-date-size"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<maxHistory>${log.maxHistory}</maxHistory>
+			<fileNamePattern>${LOG_HOME}/${log.projectName}.sql.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>${log.maxFileSize}</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
 		<encoder charset="${log.charset}">
-			<pattern>%msg%n</pattern>
+			<pattern>${log.pattern}</pattern>
 		</encoder>
 	</appender>
 
-	<logger name="com.lw.UserControler" level="INFO" additivity="false">
+	<logger name="com.lw.dao" level="DEBUG" additivity="false">
 		<appender-ref ref="STDOUT" />
+		<appender-ref ref="sql-date-size" />
 	</logger>
+	<logger name="org.mybatis.spring.SqlSessionUtils" level="DEBUG"
+	additivity="false">
+		<appender-ref ref="sql-date-size" />
+	</logger>
+	<logger name="org.springframework.jdbc.datasource.DataSourceUtils"
+	level="DEBUG" additivity="false">
+		<appender-ref ref="sql-date-size" />
+	</logger>
+	<logger name="org.mybatis.spring.transaction.SpringManagedTransaction"
+	level="DEBUG" additivity="false">
+		<appender-ref ref="sql-date-size" />
+	</logger>
+	<!-- SQL 结束 -->
 
-	<root level="INFO">
+	<root level="DEBUG">
 		<appender-ref ref="STDOUT" />
-		<appender-ref ref="test" />
+		<appender-ref ref="all-date-size" />
 	</root>
 
-	<!-- 其他配置省略 -->
 </configuration>  
