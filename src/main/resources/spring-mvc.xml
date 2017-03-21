@@ -12,7 +12,8 @@
 	<!-- 使用Annotation自动注册Bean,只扫描@Controller -->
 	<context:component-scan base-package="com.lw"
 		use-default-filters="false"><!-- base-package 如果多个，用“,”分隔 -->
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 	<!--避免IE执行AJAX时，返回JSON出现下载文件 -->
 	<!--<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"> 
@@ -32,8 +33,7 @@
 	</bean>
 
 	<!-- 配置文件上传，如果没有使用文件上传可以不用配置，当然如果不配，那么配置文件中也不必引入上传组件包 -->
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<!-- 默认编码 -->
 		<property name="defaultEncoding" value="utf-8" />
 		<!-- 文件大小最大值 -->
@@ -42,9 +42,9 @@
 		<property name="maxInMemorySize" value="40960" />
 	</bean>
 
+	<!-- Swagger配置 -->
 	<mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/" />
-	<mvc:resources mapping="/webjars/**"
-		location="classpath:/META-INF/resources/webjars/" />
+	<mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/" />
 
 
 	<!-- 配置拦截器 -->
@@ -54,4 +54,16 @@
 		<bean class="com.crossoverJie.intercept.Intercept"></bean> </mvc:interceptor> 
 		</mvc:interceptors> -->
 
+	<!-- 支持Shiro对Controller的方法级AOP安全控制 begin -->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMethodException">404</prop>
+				<prop key="java.lang.Throwable">error</prop>
+			</props>
+		</property>
+	</bean>
 </beans>
