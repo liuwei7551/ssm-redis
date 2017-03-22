@@ -1,4 +1,4 @@
-package com.lw.endpoint;
+package com.lw.search.endpoint;
 
 import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;

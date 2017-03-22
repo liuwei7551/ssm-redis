@@ -16,7 +16,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration //让Spring来加载该类配置
 @EnableWebMvc
 @EnableSwagger2 //启用Swagger2
-@ComponentScan(basePackages = { "com.lw.endpoint" }) //指定Swagger扫面的包
+@ComponentScan(basePackages = { "com.lw" }) //指定Swagger扫面的包
 public class SwaggerConfig {
 
   /**
