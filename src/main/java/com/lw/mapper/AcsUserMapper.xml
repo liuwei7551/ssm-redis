@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lw.dao.AcsUserMapper">
+  <resultMap id="BaseResultMap" type="com.lw.entity.AcsUser">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="user_status" jdbcType="TINYINT" property="userStatus" />
+    <result column="password_status" jdbcType="TINYINT" property="passwordStatus" />
+    <result column="create_datetime" jdbcType="TIMESTAMP" property="createDatetime" />
+    <result column="update_datetime" jdbcType="TIMESTAMP" property="updateDatetime" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="password_salt" jdbcType="VARCHAR" property="passwordSalt" />
+    <result column="key_salt" jdbcType="VARCHAR" property="keySalt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, phone, user_status, password_status, create_datetime, update_datetime, password, 
+    password_salt, key_salt
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from acs_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from acs_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lw.entity.AcsUser" useGeneratedKeys="true">
+    insert into acs_user (phone, user_status, password_status, 
+      create_datetime, update_datetime, password, 
+      password_salt, key_salt)
+    values (#{phone,jdbcType=VARCHAR}, #{userStatus,jdbcType=TINYINT}, #{passwordStatus,jdbcType=TINYINT}, 
+      #{createDatetime,jdbcType=TIMESTAMP}, #{updateDatetime,jdbcType=TIMESTAMP}, #{password,jdbcType=VARCHAR}, 
+      #{passwordSalt,jdbcType=VARCHAR}, #{keySalt,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lw.entity.AcsUser" useGeneratedKeys="true">
+    insert into acs_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="userStatus != null">
+        user_status,
+      </if>
+      <if test="passwordStatus != null">
+        password_status,
+      </if>
+      <if test="createDatetime != null">
+        create_datetime,
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="passwordSalt != null">
+        password_salt,
+      </if>
+      <if test="keySalt != null">
+        key_salt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatus != null">
+        #{userStatus,jdbcType=TINYINT},
+      </if>
+      <if test="passwordStatus != null">
+        #{passwordStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createDatetime != null">
+        #{createDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDatetime != null">
+        #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordSalt != null">
+        #{passwordSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="keySalt != null">
+        #{keySalt,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lw.entity.AcsUser">
+    update acs_user
+    <set>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatus != null">
+        user_status = #{userStatus,jdbcType=TINYINT},
+      </if>
+      <if test="passwordStatus != null">
+        password_status = #{passwordStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createDatetime != null">
+        create_datetime = #{createDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime = #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordSalt != null">
+        password_salt = #{passwordSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="keySalt != null">
+        key_salt = #{keySalt,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lw.entity.AcsUser">
+    update acs_user
+    set phone = #{phone,jdbcType=VARCHAR},
+      user_status = #{userStatus,jdbcType=TINYINT},
+      password_status = #{passwordStatus,jdbcType=TINYINT},
+      create_datetime = #{createDatetime,jdbcType=TIMESTAMP},
+      update_datetime = #{updateDatetime,jdbcType=TIMESTAMP},
+      password = #{password,jdbcType=VARCHAR},
+      password_salt = #{passwordSalt,jdbcType=VARCHAR},
+      key_salt = #{keySalt,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

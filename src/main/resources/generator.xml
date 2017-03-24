@@ -6,7 +6,8 @@
 <generatorConfiguration>
 
 	<!-- 配置mysql 驱动jar包路径.用了绝对路径 -->
-	<classPathEntry location="D:\maven\mysql-connector-java-5.1.38.jar" />
+<!-- 	<classPathEntry location="D:\maven\mysql-connector-java-5.1.38.jar" /> -->
+	<classPathEntry location="/home/lw/git/fund-data/docs/mysql-connector-java-5.1.38.jar" />
 
 	<context id="generator" targetRuntime="MyBatis3">
 
@@ -20,7 +21,7 @@
 
 		<!-- 数据库连接 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://127.0.0.1:3306/fund" userId="root"
+			connectionURL="jdbc:mysql://138.197.216.139:3306/fund" userId="root"
 			password="123456">
 		</jdbcConnection>
 
@@ -48,12 +49,17 @@
 		</javaClientGenerator>
 
 		<!-- 要对那些数据表进行生成操作，必须要有一个. -->
-		<table tableName="user_info" domainObjectName="User"
-			enableSelectByExample="false" enableDeleteByExample="false"
-			enableCountByExample="false" enableUpdateByExample="false">
-			<generatedKey column="id" sqlStatement="JDBC" identity="true" />
-		</table>
-		<table tableName="index_history" domainObjectName="IndexHistory"
+<!-- 		<table tableName="user_info" domainObjectName="User" -->
+<!-- 			enableSelectByExample="false" enableDeleteByExample="false" -->
+<!-- 			enableCountByExample="false" enableUpdateByExample="false"> -->
+<!-- 			<generatedKey column="id" sqlStatement="JDBC" identity="true" /> -->
+<!-- 		</table> -->
+<!-- 		<table tableName="index_history" domainObjectName="IndexHistory" -->
+<!-- 			enableSelectByExample="false" enableDeleteByExample="false" -->
+<!-- 			enableCountByExample="false" enableUpdateByExample="false"> -->
+<!-- 			<generatedKey column="id" sqlStatement="JDBC" identity="true" /> -->
+<!-- 		</table> -->
+		<table tableName="acs_user" domainObjectName="AcsUser"
 			enableSelectByExample="false" enableDeleteByExample="false"
 			enableCountByExample="false" enableUpdateByExample="false">
 			<generatedKey column="id" sqlStatement="JDBC" identity="true" />
