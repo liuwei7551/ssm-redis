@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.lw.dto.ResponseDto;
 import com.lw.entity.User;
@@ -17,6 +18,7 @@ import com.lw.service.UserService;
 
 import io.swagger.annotations.ApiOperation;
 
+@CrossOrigin
 @Controller
 public class UserEndpoint {
 
@@ -42,6 +44,14 @@ public class UserEndpoint {
   @RequestMapping(value = { "api/v1/user" }, method = RequestMethod.GET)
   public ResponseDto<List<User>> queryAll() {
     return ResponseDto.create(userService.queryAll());
+  }
+  
+  @ApiOperation(value = "修改用户信息")
+  @ResponseBody // 将Java对象输出json
+  @RequestMapping(value = { "api/v1/user/{id}" }, method = RequestMethod.PUT)
+  public ResponseDto<?> update(User record) {
+    userService.update(record);
+    return ResponseDto.OK;
   }
   
 

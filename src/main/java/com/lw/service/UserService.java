@@ -1,5 +1,6 @@
 package com.lw.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -36,12 +37,16 @@ public class UserService {
     return user;
   }
   
-  @Transactional(readOnly=true)
+//  @Transactional(readOnly=true)
   public void insert(User record) {
     userMapper.insert(record);
   }
   
   public List<User> queryAll() {
     return userMapper.queryAll();
+  }
+  
+  public void update(User record) {
+    userMapper.updateByPrimaryKeySelective(record);
   }
 }
