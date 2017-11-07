@@ -13,6 +13,7 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+
 @Configuration //让Spring来加载该类配置
 @EnableWebMvc
 @EnableSwagger2 //启用Swagger2
