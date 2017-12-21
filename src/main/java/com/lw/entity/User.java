@@ -15,9 +15,6 @@ public class User {
 
   private Byte completeness;
 
-  private Date createDatetime;
-
-  private Date updateDatetime;
 
   public Integer getId() {
     return id;
@@ -65,22 +62,6 @@ public class User {
 
   public void setCompleteness(Byte completeness) {
     this.completeness = completeness;
-  }
-
-  public Date getCreateDatetime() {
-    return createDatetime;
-  }
-
-  public void setCreateDatetime(Date createDatetime) {
-    this.createDatetime = createDatetime;
-  }
-
-  public Date getUpdateDatetime() {
-    return updateDatetime;
-  }
-
-  public void setUpdateDatetime(Date updateDatetime) {
-    this.updateDatetime = updateDatetime;
   }
 
 }

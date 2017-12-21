@@ -20,6 +20,16 @@ public class AcsUser {
     private String passwordSalt;
 
     private String keySalt;
+    
+    public AcsUser() {
+      super();
+    }
+
+    public AcsUser(String phone, String password) {
+      super();
+      this.phone = phone;
+      this.password = password;
+    }
 
     public Integer getId() {
         return id;

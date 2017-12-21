@@ -14,4 +14,6 @@ public interface AcsUserMapper {
     int updateByPrimaryKeySelective(AcsUser record);
 
     int updateByPrimaryKey(AcsUser record);
+
+    Boolean checkPhone(String phone);
 }
