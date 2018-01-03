@@ -1,5 +1,6 @@
 package com.lw.entity;
 
+import java.security.Timestamp;
 import java.util.Date;
 
 public class User {
@@ -14,7 +15,21 @@ public class User {
   private String note;
 
   private Byte completeness;
+  
+  public User() {
+    super();
+    // TODO Auto-generated constructor stub
+  }
 
+  public User(Integer id, String nickName, Byte gender, String avatar, String note, Byte completeness) {
+    super();
+    this.id = id;
+    this.nickName = nickName;
+    this.gender = gender;
+    this.avatar = avatar;
+    this.note = note;
+    this.completeness = completeness;
+  }
 
   public Integer getId() {
     return id;

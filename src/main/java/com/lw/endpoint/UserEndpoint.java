@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import com.lw.common.utils.ExportUtil;
 import com.lw.dto.ResponseDto;
 import com.lw.entity.ImportResult;
 import com.lw.entity.User;
@@ -82,16 +83,28 @@ public class UserEndpoint {
       }
       ImportResult<User> importResult = userService.batchImport(file);
       result.setResponseDesc("批量导入成功： "+ importResult.getMessage());
-      
-//      //返回导入失败的数据
-//      if (importResult.getResultList() != null && importResult.getResultList().size() > 0)
-//      {
-//          return new ExcelUtil().returnFailImportExcel(response, ExcelUtil.RESIDENCE_MODEL, importResult.getResultList(),
-//                  ResidenceInfo.class, ExcelUtil.ResidenceMap, result);
-//      }
   } catch (Exception e) {
       result.setResponseCode("0011");
       result.setResponseDesc("批量导入失败: " + e.getMessage());
+      e.printStackTrace();
+  }
+    return result;
+  }
+  
+  @ApiOperation(value = "批量导出用户信息")
+  @ResponseBody
+  @RequestMapping(value = { "api/v1/user/batchExport" }, method = RequestMethod.GET)
+  public ResponseDto<?> batchExport() {
+    ResponseDto<?> result = new ResponseDto<>();
+    try {
+      List<User> users = userService.queryAll();
+      ExportUtil<User> exportUtil = new ExportUtil<>();
+      String[] headers = {"id", "昵称", "性别", "头像", "描述", "完整度"};
+      exportUtil.export(users, headers);
+      return ResponseDto.OK;
+  } catch (Exception e) {
+      result.setResponseCode("0011");
+      result.setResponseDesc("批量导出失败: " + e.getMessage());
       e.printStackTrace();
   }
     return result;
